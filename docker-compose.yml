@@ -1,0 +1,26 @@
+networks:
+  druidflow-network:
+    driver: bridge
+
+services:
+  druidflow:
+    image: druidflow
+    container_name: druidflow-container
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/workspace
+    tty: true
+    stdin_open: true
+    command: "/bin/bash"
+    networks:
+      - druidflow-network
+
+  roboflow-inference-server:
+    image: roboflow/inference-server:cpu
+    container_name: roboflow-inference-server
+    ports:
+      - "9001:9001"
+    networks:
+      - druidflow-network

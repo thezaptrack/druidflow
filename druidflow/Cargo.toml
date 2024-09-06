@@ -1,0 +1,11 @@
+[package]
+name = "druidflow"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1.0.209", features = ["derive"] }
+serde_json = "1.0.128"
+base64 = "0.22.1"
+opencv = "0.92.3"
+reqwest = { version = "0.12.7", features = ["blocking"] }
