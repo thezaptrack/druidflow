@@ -1,0 +1,19 @@
+services:
+  druidflow-devenvironment:
+    image: druidflow-devimage
+    container_name: druidflow-devcontainer
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - ../:/workspace
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - TZ=
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    tty: true
+    stdin_open: true
+    command: "/bin/bash"
